@@ -19,7 +19,6 @@ variable "location" {
 ###Resource Group###
 variable "resource_group_name" {
   type        = string
-  default     = "TF-Module-Automated-Tests-Rbac-Admin"
   description = "Name of the resource group where resources will be hosted."
   nullable    = false
 }
