@@ -30,8 +30,8 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_key_vault" "kv" {
-  resource_group_name       = var.resource_group_name
-  location                  = var.location
+  resource_group_name       = azurerm_resource_group.rg.name
+  location                  = azurerm_resource_group.rg.location
   enable_rbac_authorization = true
   #values from variable kv_config object
   name      = lower("${var.kv_config.name}${random_integer.number.result}")
