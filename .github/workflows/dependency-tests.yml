@@ -12,7 +12,7 @@ on:
 
 jobs:
 # Dependabot will open a PR on terraform version changes, this 'dependabot' job is only used to test TF version changes by running a plan, apply and destroy in sequence.
-  dependabot-plan-apply-destroy:
+  dependabot_plan_apply_destroy:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -42,7 +42,7 @@ jobs:
 
 ##### If dependency tests are successful update all readme documentation using terraform-docs #####
   update_docs:
-    needs: dependabot-plan-apply-destroy
+    needs: dependabot_plan_apply_destroy
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
