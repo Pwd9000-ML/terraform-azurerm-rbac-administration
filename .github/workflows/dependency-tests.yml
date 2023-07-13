@@ -44,6 +44,9 @@ jobs:
   update_docs:
     needs: dependabot-plan-apply-destroy
     runs-on: ubuntu-latest
+    permissions:
+      #pull-requests: write
+      contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout
