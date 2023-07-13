@@ -49,12 +49,12 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Render terraform docs inside the README.md and push changes back to PR branch
-          uses: terraform-docs/gh-actions@v1.0.0
-          with:
-              find-dir: .
-              output-file: README.md
-              output-method: inject
-              git-push: "true"
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+            find-dir: .
+            output-file: README.md
+            output-method: inject
+            git-push: "true"
 
 ##### If dependency tests are successful merge the pull request #####
   merge_pr:
