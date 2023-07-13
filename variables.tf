@@ -31,5 +31,5 @@ variable "azure_rbac_config" {
       principal_id         = "00000000-0000-0000-0000-000000000000"
     }
   ]
-  description = "Azure RBAC permision configuration"
+  description = "Azure RBAC role assignment (permissions) configuration."
 }
