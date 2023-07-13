@@ -69,6 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+      repository-projects: write
       contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
