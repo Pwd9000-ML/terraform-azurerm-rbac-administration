@@ -44,9 +44,9 @@ jobs:
   update_docs:
     needs: dependabot-plan-apply-destroy
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      contents: write
+    #permissions:
+    #  pull-requests: write
+    #  contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout
@@ -56,6 +56,8 @@ jobs:
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
             find-dir: .
             output-file: README.md
