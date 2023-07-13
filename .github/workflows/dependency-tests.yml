@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Run Dependency Tests - Plan AND Apply AND Destroy
         uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.5
@@ -40,9 +42,23 @@ jobs:
           arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Dependabot Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 
+##### If dependency tests are successful update all readme documentation using terraform-docs #####
+  update_docs:
+    needs: dependabot-plan-apply-destroy
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+          uses: terraform-docs/gh-actions@v1.0.0
+          with:
+              find-dir: .
+              output-file: README.md
+              output-method: inject
+              git-push: "true"
+
 ##### If dependency tests are successful merge the pull request #####
   merge_pr:
-    needs: dependabot-plan-apply-destroy
+    needs: update_docs
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
