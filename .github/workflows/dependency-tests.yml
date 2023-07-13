@@ -45,7 +45,7 @@ jobs:
     needs: dependabot-plan-apply-destroy
     runs-on: ubuntu-latest
     permissions:
-      #pull-requests: write
+      pull-requests: write
       contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
