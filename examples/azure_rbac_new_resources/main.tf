@@ -22,7 +22,7 @@ resource "random_integer" "number" {
   max = 9999
 }
 
-### Resource group to deploy the sonarqube instance and supporting resources into
+### Resource group to deploy the KV into
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
